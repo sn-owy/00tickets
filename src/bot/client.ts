@@ -1,7 +1,6 @@
 import { Client, Events, GatewayIntentBits, CommandInteraction, Collection, ActivityType } from 'discord.js';
 import fg from 'fast-glob';
 import type Command from '../interfaces/command';
-import { activity } from "../config.json" 
 class Bot extends Client {
     public commands: Collection<string, Command> = new Collection(); 
     public async start(): Promise<void> {
@@ -12,10 +11,12 @@ class Bot extends Client {
             console.log(`Logged in as ${c.user.tag}`);
             c.user.setPresence({
               activities: [{
-                name: activity.name,
-                type: ActivityType[activity.type as keyof typeof ActivityType],
+                name: 'Whole Lotta Red',
+                type: ActivityType.Streaming,
+                url: 'https://open.spotify.com/album/2QRedhP5RmKJiJ1i8VgDGR?si=f92e73b80815444d'
+
               }],
-              status: 'dnd'
+              status: 'online'
             })
             const commandFiles: string[] = await fg(
                 `${__dirname.replace(/\\/g, '/')}/../commands/**/*{.ts,.js}`
