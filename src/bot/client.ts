@@ -11,12 +11,12 @@ class Bot extends Client {
             console.log(`Logged in as ${c.user.tag}`);
             c.user.setPresence({
               activities: [{
-                name: 'Whole Lotta Red',
-                type: ActivityType.Streaming,
+                name: 'Ice Spice TikTok Twerk Compilation',
+                type: ActivityType.Watching,
                 url: 'https://open.spotify.com/album/2QRedhP5RmKJiJ1i8VgDGR?si=f92e73b80815444d'
 
               }],
-              status: 'online'
+              status: 'idle'
             })
             const commandFiles: string[] = await fg(
                 `${__dirname.replace(/\\/g, '/')}/../commands/**/*{.ts,.js}`
@@ -30,7 +30,7 @@ class Bot extends Client {
                     await guild.commands.create({
                         name: command.name,
                         description: command.description,
-                        options: [] 
+                        options: command.options 
                     });
                     console.log(`Registered {/} commands`);
                 } else {
